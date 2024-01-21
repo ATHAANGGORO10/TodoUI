@@ -3,7 +3,11 @@ const listContainer = document.getElementById("list-container");
 
 function addTask() {
     if (inputBox.value === '') {
-        alert("You must write something!");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Please fill in the box first',
+        });
     } else {
         let li = document.createElement("li");
         li.innerHTML = inputBox.value;
@@ -21,17 +25,36 @@ listContainer.addEventListener("click", function (e) {
         e.target.classList.toggle("checked");
         saveData();
     } else if (e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
-        saveData();
-    }
-    function saveData() {
-        localStorage.setItem("tasks", listContainer.innerHTML);
-    }
-    function showTasks() {
-        const savedTasks = localStorage.getItem("tasks");
-        if (savedTasks) {
-            listContainer.innerHTML = savedTasks;
-        }
+        Swal.fire({
+            title: 'sure you want to delete it',
+            text: "Deleted items cannot be returned!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Dalate',
+            cancelButtonText: 'Cancell'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                e.target.parentElement.remove();
+                saveData();
+                Swal.fire(
+                    'Clear!',
+                    'Item has been deleted',
+                    'success'
+                );
+            }
+        });
     }
 });
-showTasks();
+
+function saveData() {
+    localStorage.setItem("tasks", listContainer.innerHTML);
+}
+
+function showTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+        listContainer.innerHTML = savedTasks;
+    }
+} showTasks();

@@ -1,5 +1,7 @@
 :root {
-    --Color-default-1: white;
+    --Color-default-1: #f9f6f6;
+    --Color-default-2: #8a2be2;
+    --Color-default-3: #5f1c9e;
 }
 
 * {
@@ -13,7 +15,7 @@
     width: 100%;
     padding: 10px;
     min-height: 100vh;
-    background: black;
+    background: var(--Color-default-3);
 }
 
 .todo-app {
@@ -22,7 +24,7 @@
     background: white;
     border-radius: 10px;
     margin: 100px auto 20px;
-    padding: 40px 30px 70px;
+    padding: 40px 30px 40px;
 }
 
 .todo-app h2 {
@@ -30,6 +32,8 @@
     color: #002765;
     align-items: center;
     margin-bottom: 20px;
+    font-weight: bold;
+    font-family: "Silkscreen", sans-serif;
 }
 
 .todo-app h2 img {
@@ -41,7 +45,7 @@
     display: flex;
     padding-left: 20px;
     align-items: center;
-    border-radius: 30px;
+    border-radius: 10px;
     margin-bottom: 25px;
     background-color: #edeef0;
     justify-content: space-between;
@@ -58,12 +62,17 @@
 button {
     border: none;
     outline: none;
-    color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
     padding: 16px 50px;
-    border-radius: 40px;
-    background: #ff5945;
+    color: var(--Color-default-1);
+    border-radius: 0px 10px 10px 0px;
+    background: var(--Color-default-2);
+}
+
+button:hover {
+    background-color: var(--Color-default-3);
 }
 
 ul li {
